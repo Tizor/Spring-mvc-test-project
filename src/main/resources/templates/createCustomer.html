@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+</head>
+<body>
+<form method="POST"  th:action="@{/addCustomer}" th:object="${customer}">
+
+    <div style="text-align: center;">
+        <h3>Enter new customer:</h3>
+
+        <!--        <label for="customerNumber">Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
+        <!--        <input type="text" th:field="*{customerNumber}"/>-->
+        <!--        <br/>-->
+        <label for="name">Name:</label>
+        <input type="text" th:field="*{name}"/>
+        <br/>
+        <label for="age">Age: </label>
+        <input type="text" th:field="*{age}"/>
+        <br/>
+        <label for="city">City:</label>
+        <input type="text" th:field="*{city}"/>
+        <br/>
+        <label for="email">Email:</label>
+        <input type="text" th:field="*{email}"/>
+        <br/>
+        <label for="password">Password:</label>
+        <input type="password" th:field="*{password}"/>
+        <br/>
+        <label for="birthday">Birthday:</label>
+
+        <input type="text" placeholder="yyyy-mm-dd" th:field="*{birthday}" />
+        <br/>
+
+        <label for="profession">Profession:</label>
+        <select th:field="*{profession}">
+            <option th:each="prof : ${professionList}" th:value = "${prof}" th:text = "${prof}"></option>
+        </select>   <br/>
+        <label>Married:</label>
+        <input type="checkbox" th:field="*{married}"/>
+        <br/>
+
+        <label>Gender:</label>
+        <input type="radio" th:field="*{gender}" value = "Male"/> Male
+        <input type="radio" th:field="*{gender}" value = "Female"/> Female
+        <br/>
+        <label>Note:</label>
+        <textarea rows="5" cols="25" th:field="*{note}"></textarea>      <br/>
+
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+</body>
+</html>

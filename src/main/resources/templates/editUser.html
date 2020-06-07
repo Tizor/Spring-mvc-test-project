@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+</head>
+<body>
+<form method="POST"  th:action="@{/updateCustomer}" th:object="${customer}">
+    <div style="text-align: center;">
+        <h3>Enter new customer:</h3>
+
+<!--        <label for="customerNumber">Id:</label>-->
+        <input type="hidden" th:field="*{customerNumber}"/>
+        <br/>
+        <label for="name">Name:</label>
+        <input type="text" th:field="*{name}"/>
+        <br/>
+        <label for="age">Age: &nbsp;&nbsp;&nbsp; </label>
+        <input type="text" th:field="*{age}"/>
+        <br/>
+        <label for="city">City:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" th:field="*{city}"/>
+        <br/>
+
+        <label for="gender">Gender:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" placeholder="Male/Female" th:field="*{gender}"/>
+        <br/>
+
+        <label for="birthday">Birthday:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" placeholder="yyyy-mm-dd" th:field="*{birthday}"/>
+        <br/>
+
+        <label for="married">Married:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" placeholder="true/false" th:field="*{married}"/>
+        <br/>
+
+        <label for="email">Email:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" th:field="*{email}"/>
+        <br/>
+
+        <label for="password">Password:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input type="text" th:field="*{password}"/>
+        <br/>
+
+        <label for="profession">Profession:</label>
+        <select th:field="*{profession}">
+            <option th:each="prof : ${professionList}" th:value = "${prof}" th:text = "${prof}"></option>
+        </select>
+        <br/>
+
+        <label>Note:</label>
+        <textarea rows="5" cols="25" th:field="*{note}"></textarea>      <br/>
+
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+</body>
+</html>

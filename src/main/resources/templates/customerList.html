@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customer list</title>
+<body>
+<div align="center">
+    <h1>Customer list</h1>
+    <table border="1">
+        <th> Id</th>
+        <th> Name</th>
+        <th> Age</th>
+        <th> City</th>
+        <th> Customer info</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th:block th:each=" list : ${ListOfCustomers}">
+            <tr>
+                <td><span th:text=${list.customerNumber}></span></td>
+                <td><span th:text=${list.name}></span></td>
+                <td><span th:text=${list.age}></span></td>
+                <td><span th:text=${list.city}></span></td>
+                <td>
+                    <form th:action="@{/customerInfo}">
+                        <input type="hidden" name="customerNumber" th:value="${list.customerNumber}" />
+                        <input  class="button button-block" type="submit" value="Customer info"/>
+                    </form> </td>
+                <td>
+                    <form th:action="@{/editUser}">
+                        <input type="hidden" name="customerNumber" th:value="${list.customerNumber}" />
+                        <input  class="button button-block" type="submit" value="Edit"/>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/deleteCustomer}">
+                        <input type="hidden" name="customerNumber" th:value="${list.customerNumber}" />
+                        <input  class="button button-block" type="submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</br>
+    <form th:action="@{/createCustomer}">
+        <input  class="button button-block" type="submit" value="Add customer"/>
+    </form>
+</div>
+</body>
+</html>
