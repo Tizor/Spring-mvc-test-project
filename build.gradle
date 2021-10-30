@@ -1,11 +1,22 @@
 plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
-group 'SpringBootMVCTestProject'
-version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+bootJar {
+    archiveBaseName = 'k8s-test-app'
+    archiveExtension = 'jar'
+    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+}
+
+
+group 'SpringBootMVCTestProject'
+
+
+sourceCompatibility = '14'
+targetCompatibility = '14'
 
 repositories {
     mavenCentral()
@@ -13,27 +24,27 @@ repositories {
 
 dependencies {
 
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.1.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.6.RELEASE'
+
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf:2.2.6.RELEASE"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:2.2.6.RELEASE"
-    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.9'
+    implementation "org.postgresql:postgresql:42.2.9"
 
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     //All dependencies for Java 8 -> Java 11
     // replacements for deprecated JDK module java.xml.ws
-    compile 'javax.xml.ws:jaxws-api:2.3.0' // javax.xml.ws.* classes
-    compile 'javax.jws:jsr181-api:1.0-MR1' // for javax.jws.* classes
-    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+    implementation 'javax.xml.ws:jaxws-api:2.3.0' // javax.xml.ws.* classes
+    implementation 'javax.jws:jsr181-api:1.0-MR1' // for javax.jws.* classes
+    implementation "javax.annotation:javax.annotation-api:1.3.2"
 
     // replacement for deprecated JDK module java.xml.bind
-    compile "javax.activation:activation:1.1"
-    compile "com.sun.xml.bind:jaxb-impl:2.3.0"
-    compile "com.sun.xml.bind:jaxb-core:2.3.0"
-    compile "com.sun.xml.ws:rt:2.3.0"
-    compile "com.sun.xml.ws:jaxws-rt:2.3.0"
+    implementation "javax.activation:activation:1.1"
+    implementation "com.sun.xml.bind:jaxb-impl:2.3.0"
+    implementation "com.sun.xml.bind:jaxb-core:2.3.0"
+    implementation "com.sun.xml.ws:rt:2.3.0"
+    implementation "com.sun.xml.ws:jaxws-rt:2.3.0"
 }
